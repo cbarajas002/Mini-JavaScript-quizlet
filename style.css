@@ -4,7 +4,8 @@ body{
 
 
 
-.start_btn {
+.start_btn,
+.info_box{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -23,4 +24,68 @@ body{
     background-color: whitesmoke;
     cursor: pointer;
 
+}
+
+.info_box{
+   width: 540px;
+   background: #fff;
+   border-radius: 5px; 
+}
+
+
+.info_box .info_title{
+    height: 60px;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    padding: 0 35px;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+
+.info_box .info_list{
+    padding: 15px 35px;
+}
+
+
+.info_box .info_list .info{
+    margin: 5px 0px;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+.info_box .info_list .info span{
+    font-weight: 600;
+    color: darkred;
+    font-family: monospace;
+}
+
+
+.info_box .buttons{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 35px;
+    border-top: 2px solid lightgray;
+}
+
+
+.info_box .buttons button{
+    margin: 0 5px;
+    height: 40px;
+    width: 100px;
+    border: 1px solid blue;
+    background-color: blue;
+    border-radius: 5px;
+    color: whitesmoke;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: sans-serif;
+    cursor: pointer;
 }
