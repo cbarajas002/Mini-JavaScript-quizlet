@@ -1,0 +1,26 @@
+body{
+    background-color:navajowhite;
+}
+
+
+
+.start_btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50);
+}
+
+.start_btn button{
+    font-size: 25px;
+    font-weight: 500;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:darkred;
+    padding: 15px 30px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    cursor: pointer;
+
+}
