@@ -42,13 +42,33 @@ function showQuestions(index){
     var que_text = document.querySelector(".que_text");
     var option_list = document.querySelector(".option_list");
     let que_tag = '<span>' + questions[index].numb + ". " + questions[index].question + '</span>';
-    let option_tag = '<div class="option">' + questions[index].options[0] + '<span></span></div>'
-                        +'<div class="option"> '+ questions[index].options[1] + '<span></span></div>'
-                        +'<div class="option"> '+ questions[index].options[2] + '<span></span></div>'
-                        +'<div class="option"> '+ questions[index].options[3] + '<span></span></div>';
+    let option_tag = '<div class="option">' + questions[index].options[0] +'<span></span></div>'
+                     +'<div class="option">'+ questions[index].options[1] +'<span></span></div>'
+                     +'<div class="option">'+ questions[index].options[2] +'<span></span></div>'
+                     +'<div class="option">'+ questions[index].options[3] +'<span></span></div>';
     que_text.innerHTML = que_tag;
     option_list.innerHTML = option_tag;
+    var option = option_list.querySelectorAll(".option");
+    for (let i = 0; i < option.length; i++) {
+        option[i].setAttribute("onclick", "optionSelected(this)");
+    }
 }
+
+
+function optionSelected(answer){
+    let userAns = answer.textContent;
+    let correctAns = questions[que_count].answer;
+    if(userAns === correctAns){
+        console.log("Answer is Correct");
+    }else{
+        console.log("Answer is Wrong");
+    }
+}
+
+
+
+
+
 
 function queCounter(index){
     var bottom_ques_counter = quiz_box.querySelector(".total_que");

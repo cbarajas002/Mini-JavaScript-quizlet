@@ -267,6 +267,12 @@ section .option_list .option:hover{
     border-color: #a42834;
 }
 
+.option_list .option.correct{
+    color: #155724;
+    background: #f8d7da;
+    border-color: #a42834;
+}
+
 
 .quiz_box footer{
     height: 60px;

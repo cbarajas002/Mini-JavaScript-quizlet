@@ -27,9 +27,9 @@ let questions = [
         answer: "Netscape",
         options: [
             "Apple",
-            "microsoft",
+            "Netscape",
             "Google",
-            "Netscape"
+            "Microsoft"
         ]
     }, 
     {
