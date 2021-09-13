@@ -5,6 +5,7 @@ var continue_btn = info_box.querySelector(".buttons .restart");
 var quiz_box = document.querySelector(".quiz_box");
 var timeCount = quiz_box.querySelector(".timer .timer_sec");
 var timeLine = quiz_box.querySelector("header .time_line");
+var timeOff = quiz_box.querySelector("header .time_text");
 
 var option_list = document.querySelector(".option_list");
 
@@ -56,6 +57,7 @@ restart_quiz.onclick = ()=>{
     clearInterval(counterLine);
     startTimerLine(widthValue);
     next_btn.style.display = "none";
+    timeOff.textContent = "Time left";
 }
 
 
@@ -76,7 +78,9 @@ next_btn.onclick = ()=>{
         clearInterval(counterLine);
         startTimerLine(widthValue);
         next_btn.style.display = "none";
+        timeOff.textContent = "Time left";
     }else{
+        clearInterval(counter);
         console.log("Questions completed");
         showResultBox();
     }
@@ -150,7 +154,7 @@ function showResultBox() {
 }
 
 function startTimer(time){
-    counter = setInterval(timer,1000);
+    counter = setInterval(timer,600);
     function timer(){
         timeCount.textContent = time;
         time--;
@@ -160,7 +164,8 @@ function startTimer(time){
         }
         if(time < 0){
             clearInterval(counter);      
-            timeCount.textContent = "00";  
+            timeCount.textContent = "00";
+            timeOff.textContent = "Time off";   
 
             let correctAns = questions[que_count].answer;
             let allOptions = option_list.children.length;
@@ -179,7 +184,7 @@ function startTimer(time){
 }
 
 function startTimerLine(time){
-    counterLine = setInterval(timer, 20);
+    counterLine = setInterval(timer, 12);
     function timer(){
         time += 1;
         timeLine.style.width = time + "px";
