@@ -4,6 +4,7 @@ var exit_btn = info_box.querySelector(".buttons .quit");
 var continue_btn = info_box.querySelector(".buttons .restart");
 var quiz_box = document.querySelector(".quiz_box");
 var timeCount = quiz_box.querySelector(".timer .timer_sec");
+var timeLine = quiz_box.querySelector("header .time_line");
 
 var option_list = document.querySelector(".option_list");
 
@@ -23,18 +24,41 @@ continue_btn.onclick = ()=>{
     quiz_box.classList.add("activeQuiz"); //Shows the quiz box
     showQuestions(0);
     queCounter(1);
-    startTimer(15);
+    startTimer(10);
+    startTimerLine(0);
 }
 
 let que_count = 0;
 let que_numb = 1;
-let counter; 
+let counter;
+let counterLine;
+let timeValue = 10;
+let widthValue = 0;
 let userScore = 0;
 
 var next_btn = quiz_box.querySelector(".next_btn");
 var result_box = document.querySelector(".result_box");
 var restart_quiz = result_box.querySelector(".buttons .restart");
 var quit_quiz = result_box.querySelector(".buttons .quit");
+
+restart_quiz.onclick = ()=>{
+    quiz_box.classList.add("activeQuiz");
+    result_box.classList.remove("activeResult");
+    let que_count = 0;
+    let que_numb = 1;
+    let timeValue = 10;
+    let widthValue = 0;
+    let userScore = 0;
+    showQuestions(que_count);
+    queCounter(que_numb); 
+    clearInterval(counter);
+    startTimer(timeValue);
+    clearInterval(counterLine);
+    startTimerLine(widthValue);
+    next_btn.style.display = "none";
+}
+
+
 
 //once you click on the quit button it will reload you back to the start quiz button
 quit_quiz.onclick = ()=>{
@@ -46,7 +70,11 @@ next_btn.onclick = ()=>{
         que_count++;
         que_numb++;
         showQuestions(que_count);
-        queCounter(que_numb);
+        queCounter(que_numb); 
+        clearInterval(counter);
+        startTimer(timeValue);
+        clearInterval(counterLine);
+        startTimerLine(widthValue);
         next_btn.style.display = "none";
     }else{
         console.log("Questions completed");
@@ -73,6 +101,8 @@ function showQuestions(index){
 
 
 function optionSelected(answer){
+    clearInterval(counter);
+    clearInterval(counterLine);
     let userAns = answer.textContent;
     let correctAns = questions[que_count].answer;
     let allOptions = option_list.children.length;
@@ -131,10 +161,33 @@ function startTimer(time){
         if(time < 0){
             clearInterval(counter);      
             timeCount.textContent = "00";  
+
+            let correctAns = questions[que_count].answer;
+            let allOptions = option_list.children.length;
+
+            for (let i = 0; i < allOptions; i++) {
+                if(option_list.children[i].textContent == correctAns){
+                    option_list.children[i].setAttribute("class", "option correct");
+                }
+            }
+            for (let i = 0; i < allOptions; i++) {
+                option_list.children[i].classList.add("disabled")
+            }
+            next_btn.style.display = "block";
         }
     }
 }
 
+function startTimerLine(time){
+    counterLine = setInterval(timer, 20);
+    function timer(){
+        time += 1;
+        timeLine.style.width = time + "px";
+        if(time > 549){
+            clearInterval(counterLine);
+        }
+    }
+}
 
 
 

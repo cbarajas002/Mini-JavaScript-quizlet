@@ -199,6 +199,14 @@ body{
     user-select: none;
 }
 
+.quiz_box header .time_line{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 3px;
+    background: #007bff;
+}
+
 .quiz_box section{
     padding: 25px 30px 20px 30px;
     background:#fff;
