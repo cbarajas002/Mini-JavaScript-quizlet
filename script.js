@@ -6,7 +6,6 @@ var quiz_box = document.querySelector(".quiz_box");
 var timeCount = quiz_box.querySelector(".timer .timer_sec");
 var timeLine = quiz_box.querySelector("header .time_line");
 var timeOff = quiz_box.querySelector("header .time_text");
-var timeOff = quiz_box.querySelector("header .time_text");
 
 var option_list = document.querySelector(".option_list");
 
