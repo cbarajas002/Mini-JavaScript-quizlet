@@ -33,6 +33,7 @@ let que_count = 0;
 let que_numb = 1;
 let counter;
 let counterLine;
+let timeOver = 00;
 let timeValue = 10;
 let widthValue = 0;
 let userScore = 0;
