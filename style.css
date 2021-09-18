@@ -53,7 +53,7 @@ body{
 }
 
 .info_box{
-    top: 5px;
+    top: 20%;
    width: 540px;
    background: #fff;
    border-radius: 5px; 
@@ -139,7 +139,7 @@ body{
 
 
 .quiz_box{
-    top: 5px;
+    top: 20%;
     width: 550px;
     background: #fff;
     border-radius: 5px;
@@ -340,7 +340,7 @@ footer .next_btn:hover{
 
 .result_box{
     background: white;
-    top: 30%;
+    top: 25%;
     right: 2%;
     width: 450px;
     padding: 25px 30px;
@@ -396,4 +396,31 @@ footer .next_btn:hover{
     border: 1px solid #007bff;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+fieldset{
+    margin-bottom: 10px;
+}
+
+
+.legend{
+    padding: 15px 5px;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 700;
+    
+}
+
+.input{
+    padding: 5px ;
+    height: 35px;
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
+}
+
+.btn{
+    width: 80px;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
 }

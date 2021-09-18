@@ -7,6 +7,8 @@ var timeCount = quiz_box.querySelector(".timer .timer_sec");
 var timeLine = quiz_box.querySelector("header .time_line");
 var timeOff = quiz_box.querySelector("header .time_text");
 
+
+
 var option_list = document.querySelector(".option_list");
 
 // If Start Quiz button clicked 
@@ -46,11 +48,11 @@ var quit_quiz = result_box.querySelector(".buttons .quit");
 restart_quiz.onclick = ()=>{
     quiz_box.classList.add("activeQuiz");
     result_box.classList.remove("activeResult");
-    let que_count = 0;
-    let que_numb = 1;
-    let timeValue = 10;
-    let widthValue = 0;
-    let userScore = 0;
+     que_count = 0;
+     que_numb = 1;
+     timeValue = 10;
+     widthValue = 0;
+     userScore = 0;
     showQuestions(que_count);
     queCounter(que_numb); 
     clearInterval(counter);
@@ -111,6 +113,7 @@ function optionSelected(answer){
     let userAns = answer.textContent;
     let correctAns = questions[que_count].answer;
     let allOptions = option_list.children.length;
+    console.log(correctAns)
     if(userAns == correctAns){
         userScore += 1;
         console.log(userScore);
@@ -119,6 +122,8 @@ function optionSelected(answer){
     }else{
         answer.classList.add("incorrect");
         console.log("Answer is Wrong");
+        timeValue = timeValue - 2; 
+        console.log(timeValue);
 
         //if the answer is incorrect then automtically select the correct answer
         for (let i = 0; i < allOptions; i++) {
@@ -152,7 +157,53 @@ function showResultBox() {
         let scoreTag = '<span>and sorry, You got only <p>'+ userScore + '</p> out of <p>'+ questions.length +'</p></span>';
         scoreText.innerHTML = scoreTag;
     }
+
+
+    var userName = document.getElementById("user");
+    var userPoints= document.getElementById("points");
+    var btnInsert = document.getElementById("btnInsert");
+    var scoreResults = document.getElementById("scoreResults");
+
+
+
+    function highScore() {
+        // Save related form data as an object
+        var user = {
+          userName: userName.value,
+          userPoints: userPoints.value,
+        };
+        // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+      
+      function renderLastUser() {
+        // Use JSON.parse() to convert text to JavaScript object
+        var total = JSON.parse(localStorage.getItem("user"));
+        // Check if data is returned, if not exit out of the function
+        if (total !== null) {
+        document.getElementById("saved-userName").innerHTML = total.userName;
+        document.getElementById("saved-userPoints").innerHTML = total.userPoints;
+        } else {
+          return;
+        }
+      }
+      
+      btnInsert.addEventListener("click", function(event) {
+      event.preventDefault();
+      highScore();
+      renderLastUser();
+      });
+      
+      // The init() function fires when the page is loaded 
+      function init() {
+        // When the init function is executed, the code inside renderLastGrade function will also execute
+        renderLastUser();
+      }
+      init();
+    
 }
+
+
 
 function startTimer(time){
     counter = setInterval(timer,600);
@@ -166,7 +217,9 @@ function startTimer(time){
         if(time < 0){
             clearInterval(counter);      
             timeCount.textContent = "00";
-            timeOff.textContent = "Time off";   
+            timeOff.textContent = "Time off"; 
+
+          
 
             let correctAns = questions[que_count].answer;
             let allOptions = option_list.children.length;
@@ -180,8 +233,16 @@ function startTimer(time){
                 option_list.children[i].classList.add("disabled")
             }
             next_btn.style.display = "block";
+      
+        }
+        if(time <= 0){
+            clearInterval(counter)
+            timeCount.textContent = "00"
+            showResultBox();
+
         }
     }
+
 }
 
 function startTimerLine(time){
